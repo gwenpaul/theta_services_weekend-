@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="serviceApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Theta Weekend Services</title>
+    <link rel="stylesheet" href="vendor/bootstrap/bootstrap.min.css">
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="assets/scripts/client.min.js"></script>
+</head>
+<body ng-controller="MainController">
+<div class="jumbotron">
+    <div class="container">
+        <h1>Gwen's Github Events</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="panel panel-info" ng-repeat="entry in github.data">
+        <div class="panel-heading">id#: {{entry.id}}</div>
+        <div class="panel-body"><a ng-href="http://www.github.com/{{entry.repo.name}}" target="_blank">{{entry.repo.name}}</a></div>
+        <div class="panel-body">Event Type: {{entry.type}}</div>
+        <div class="panel-body bg-danger" ng-show="entry.payload.commits[0].message">Commit Message: {{entry.payload.commits[0].message}}</div>
+        <div class="panel-footer">{{entry.created_at | date: 'medium'}}</div>
+    </div>
+</div>
+</body>
+</html>
